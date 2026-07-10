@@ -1,5 +1,5 @@
 @Library("shared-jenkins-pipelines") _
 
 platformioPipeline('offbeatCredentialsId': "offbeatCredentialsId"
-,'arduinoFqbn':'esp8266:esp8266:generic'
+,'arduinoFqbn':'esp32:esp32:esp32'
 ,'publishOffbeat':'false')
