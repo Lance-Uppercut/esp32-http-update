@@ -4,7 +4,7 @@ import subprocess
 from pathlib import Path
 Import("env")
 
-project_dir = Path(env.subst("PROJECT_DIR"))
+project_dir = Path(env.subst("$PROJECT_DIR"))
 
 def ensure_python_dependency(module_name, pip_name=None):
     try:
@@ -53,7 +53,7 @@ def add_framework_flags(env):
             break
 
 def copy_publish_bin(target, source, env):
-    bin_path = Path(env.subst("BUILD_DIR/{PROGNAME}.bin"))
+    bin_path = Path(env.subst("$BUILD_DIR/${PROGNAME}.bin"))
     publish_dir = project_dir / ".pio" / "build" / "publish"
     publish_dir.mkdir(parents=True, exist_ok=True)
     import shutil
@@ -63,4 +63,4 @@ ensure_libdeps_dir()
 ensure_platform_prerequisites()
 generate_version_header()
 add_framework_flags(env)
-env.AddPostAction("BUILD_DIR/{PROGNAME}.bin", copy_publish_bin)
+env.AddPostAction("$BUILD_DIR/${PROGNAME}.bin", copy_publish_bin)
